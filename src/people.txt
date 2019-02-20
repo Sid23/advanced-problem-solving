@@ -1,0 +1,27 @@
+16
+Maria Verdi F 69
+Teresa Verdi F 55
+Franca Rossi F 74
+Ivan Verdi M 62
+Andrea Verdi M 73
+Carla Rossi F 60 
+Paola Neri F 78
+Sara Azzurri F 65
+Giulia Neri F 70
+Luigi Verdi M 71
+Rocco Verdi M 58
+Fabio Neri M 57
+Luca Rossi M 59
+Enrico Verdi M 49
+Gianna Rossi F 58
+Silvia Bianchi F 67
+Ivan Verdi Luigi Verdi Giulia Neri
+Giulia Neri Fabio Neri Carla Rossi
+Enrico Verdi Ivan Verdi Gianna Rossi
+Luigi Verdi Rocco Verdi Sara Azzurri
+Paola Neri Fabio Neri Carla Rossi
+Maria Verdi Luigi Verdi Giulia Neri
+Franca Rossi Luca Rossi Silvia Bianchi
+Andrea Verdi Luigi Verdi Franca Rossi
+Teresa Verdi Andrea Verdi Paola Neri
+Gianna Rossi Luca Rossi Silvia Bianchi
