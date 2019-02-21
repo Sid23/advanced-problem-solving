@@ -9,25 +9,41 @@ int loadData(const char* filename, person_t **people, int **relationship[]) {
     return -1;
   
   char line[512], s, nameF[50], surnameF[50], nameM[50], surnameM[50], name[50], surname[50]; /* or other suitable maximum line size */
-  int i;
+  int i, j, id, idF, idM;
 
   fgets(line, sizeof(line), fp);
   sscanf(line, "%d", &N);
   *people = (person_t*) malloc(N * sizeof(person_t));
-  *relationship = (int**) malloc(N * sizeof(int*));
-  for (i = 0; i <N; i++)
-    (*relationship)[i] = (int*) calloc(N * sizeof(int), 0);
-  
+
+  (*relationship) = (int**) malloc(N * sizeof(int*));
+  for (i = 0; i < N; i++)
+    (*relationship)[i] = (int*) malloc(N * sizeof(int)); 
+  for (i = 0; i < N; i++)
+    for (j = 0; j < N; j++)
+      (*relationship)[i][j] = 0;
+
   for (i = 0; i < N; i++) {
     fgets(line, sizeof(line), fp);
     sscanf(line, "%s %s %c %d", (*people)[i].name, (*people)[i].surname, &s, &((*people)[i].age));
     (s == 'M') ? ((*people)[i].sex = M) : ((*people)[i].sex = F);
+    (*people)[i].root = 1;
   }
-  /*
-  while (fgets(line, sizeof(line), fp)) {
 
+  // load relatioship
+  sortPeopleByName(*people, 0, N - 1);
+  while (fgets(line, sizeof(line), fp) != NULL) {
+    sscanf(line, "%s %s %s %s %s %s", name, surname, nameF, surnameF, nameM, surnameM);
+    id = searchPersonByName(*people, 0, N - 1, name, surname);
+    idF = searchPersonByName(*people, 0, N - 1, nameF, surnameF);
+    idM = searchPersonByName(*people, 0, N - 1, nameM, surnameM);
+    if (id < 0 || idM < 0 || idF < 0)
+      continue;
+
+    //printf("%s(%d) | P %s(%d) M %s(%d)\n", (*people)[id].name, id, (*people)[idF].name, idF, (*people)[idM].name, idM); 
+    (*relationship)[idF][id] = 1;
+    (*relationship)[idM][id] = 1;
+    (*people)[id].root = 0;
   }
-  */
   fclose(fp);
   return 1;
 }

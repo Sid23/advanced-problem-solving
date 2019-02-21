@@ -7,6 +7,7 @@ typedef struct person {
    char surname[50];
    enum sex_t sex;
    int age;
+   int root;
 } person_t;
 
 extern int N;
