@@ -3,29 +3,33 @@
 #include "recursiveFunctions.h"
 #include "utils.h"
 
-int N = -1;
+int N = -1, **relationship;
+person_t *people;
 
 int main(int argc, char* argv[]) {
-  person_t *people;
-  int **relationship, ret;
-
+  
+  int ret, *offspring, nOffspring;
   ret = loadData("people.txt", &people, &relationship);
   if(!ret)
     return ret;
 
-  printf("%s\n", people[5].surname);
-  printf("%d\n", N);
   printPeople(people);
-  int id = searchPersonByName(people, 0, N - 1, "Luigi", "Verdi");
-  if (id < 0)
-    printf("-----------------------\nPerson not found\n");
-  else
-    printf("-----------------------\nId = %d\n", id);
-
+  printf("+++++++++++++++++++++++++++++++++++++++++++++++\n");
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++)
       printf("%d ", relationship[i][j]);
     printf("\n");
   }
+  printf("+++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+  nOffspring = getOffspring("Rocco", "Verdi", &offspring);
+  if (nOffspring < 0) {
+    printf("Person not found\n");
+  } else {
+    printf("Offspring = %d:\n", nOffspring);
+    for (int i = 0; i < nOffspring; i++)
+      printf("- %s\n", people[offspring[i]].name);
+  }
+  printf("+++++++++++++++++++++++++++++++++++++++++++++++\n");
   return 0;
 }

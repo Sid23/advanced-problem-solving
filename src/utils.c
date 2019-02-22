@@ -3,6 +3,8 @@
 #include <string.h>
 #include "utils.h"
 
+extern int N;
+
 int loadData(const char* filename, person_t **people, int **relationship[]) {
   FILE *fp = fopen(filename, "r");
   if (fp == NULL)

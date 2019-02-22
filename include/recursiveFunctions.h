@@ -1,6 +1,8 @@
 #ifndef RECURSIVE_FUNCTIONS
 #define RECURSIVE_FUNCTIONS
 
-int fool();
+#include "utils.h"
+
+int getOffspring(char *name, char *surname, int** offspringIds);
 
 #endif
