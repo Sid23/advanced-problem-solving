@@ -1,10 +1,10 @@
-IDIR=include
-CC=g++
+IDIR =../include
+CC=gcc
 CFLAGS=-I$(IDIR)
 
 ODIR=obj
 
-_DEPS = recursiveFunctions.h
+_DEPS = recursiveFunctions.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJ = main.o recursiveFunctions.o utils.o
@@ -15,7 +15,6 @@ $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
-	$(info $$Include dir is [${DEPS}])
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
