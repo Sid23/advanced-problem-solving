@@ -8,7 +8,7 @@ person_t *people;
 
 int main(int argc, char* argv[]) {
   
-  int ret, *offspring, nOffspring;
+  int ret, *offspring, nOffspring, sameSexChainLen, *sameSexIds, age, *oldestChain, chainLen;
   ret = loadData("people.txt", &people, &relationship);
   if(!ret)
     return ret;
@@ -31,5 +31,14 @@ int main(int argc, char* argv[]) {
       printf("- %s\n", people[offspring[i]].name);
   }
   printf("+++++++++++++++++++++++++++++++++++++++++++++++\n");
+  sameSexChainLen = longestOffspringChainSameSex(&sameSexIds);
+  printf("Longest chain of %d\n", sameSexChainLen);
+  for (int i = 0; i < sameSexChainLen; i++)
+    printf("--> %s\n", people[sameSexIds[i]].name);
+  printf("+++++++++++++++++++++++++++++++++++++++++++++++\n");
+  age = getOldestOffsringChain(&oldestChain, &chainLen);
+  printf("Maximum age of offspring: %d\n", age);
+  for (int i = 0; i < chainLen; i++)
+    printf("--> %s\n", people[oldestChain[i]].name);
   return 0;
 }

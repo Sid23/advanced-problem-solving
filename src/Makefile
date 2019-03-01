@@ -1,5 +1,5 @@
-IDIR =../include
-CC=gcc
+IDIR=include
+CC=g++
 CFLAGS=-I$(IDIR)
 
 ODIR=obj
@@ -15,6 +15,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
+	$(info $$Include dir is [${DEPS}])
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
